@@ -6,6 +6,7 @@ var fs=require("fs")
 var multer = require('multer');
 var downloadData=require('./modules/download');
 var regex=require('./modules/regex');
+var maxCalls=require('./modules/mostcalls')
 
 var arr=[]
 
@@ -62,7 +63,9 @@ app.post('/upload', function (req, res, next) {
             var datas=dataBuffer.toString() 
 
             arr=regex(datas)
-            res.render("downloadage",{result:arr});  
+
+            mapData=maxCalls(arr)
+            res.render("downloadage",{result:arr, max:mapData[0]});  
         }
     });
 })
