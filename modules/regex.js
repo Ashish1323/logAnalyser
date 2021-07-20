@@ -19,6 +19,8 @@ function regex(data){
 
             var str=data.split("\n")
 
+            
+
             for(var i=0;i<str.length;i++){
                     var json={}
 

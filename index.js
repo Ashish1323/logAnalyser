@@ -10,7 +10,7 @@ var maxCalls=require('./modules/mostcalls')
 var bodyParser=require('body-parser');
 var arr=[]
 var mapData=[];
-const port = 3000
+const port = 8000
 
 //files setup
 app.set("view engine", "ejs");
@@ -29,15 +29,12 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits: { fileSize: 1000000 },
-    //fileFilter: function (req, file, cb) {
-    //checkFileType(file, cb);
-    //}
 }).single('avatar')
 
 
 // API Routes
 app.get('/', (req, res) => {
-    res.render("home")
+    res.render("home",{error:false,file:false})
 })
 
 app.get('/download', (req, res, next) => {
@@ -53,19 +50,29 @@ app.get('/download', (req, res, next) => {
 app.post('/upload', function (req, res, next) {
     upload(req, res, (err) => {
         if (err) {
-            console.log(err)
+            res.redirect('/')
         }
         else {
+            try{
             arr.length=0
-
-            var fName=req.file.filename
+            var fName=req.file.filename ? req.file.filename : null
+            if(fName && fName[fName.length-3]+fName[fName.length-2]+fName[fName.length-1]=="txt"){
             var dataBuffer= fs.readFileSync("./public/uploads/"+fName) 
             var datas=dataBuffer.toString() 
 
             arr=regex(datas)
+    
 
             mapData=maxCalls(arr)
             res.render("displayLog",{result:arr, IPCount:mapData});  
+            }
+            else{
+                res.render('home',{error:true,file:false})
+            }
+            }
+            catch{
+                res.render('home',{error:false,file:true})
+            }
         }
     });
 })

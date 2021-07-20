@@ -18,13 +18,23 @@ body {
 <body>
     <h1 class="text-center mt-5" style="color: whitesmoke;">LOG ANALYSER</h1>
     <h3 class="text-center mt-4" style="color: whitesmoke;">TEAM - 3</h3>
-    
+    <% if(error){ %>
+    <div class="alert alert-danger text-center mt-3" role="alert">
+      You Entered The Wrong File Type, Please Give txt as Input :-D
+    </div>
+    <% } %>
+
+        <% if(file){ %>
+          <div class="alert alert-danger text-center mt-3" role="alert">
+            Txt File Format is not correct, Please Enter Logs with Line Break!!
+          </div>
+          <% } %>
     <div class="row d-flex justify-content-center mx-2 mt-5 text-center">
       <div class="col-md-6 col-10">
-        <form method="POST" action="/upload" enctype="multipart/form-data" class="mt-5">
+        <form method="POST" action="/upload" enctype="multipart/form-data" class="mt-5" required>
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="avatar" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+            <input type="file" class="custom-file-input" name="avatar" id="customFile" required>
+            <label class="custom-file-label" for="customFile" required>Choose file</label>
           </div>
           <button type="submit" class="btn  btn-outline-secondary btn-light mt-4">Submit</button>
         </form>
