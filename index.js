@@ -7,15 +7,15 @@ var multer = require('multer');
 var downloadData=require('./modules/download');
 var regex=require('./modules/regex');
 var maxCalls=require('./modules/mostcalls')
-
+var bodyParser=require('body-parser');
 var arr=[]
-
+var mapData=[];
 const port = 3000
 
 //files setup
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //multer setup
 const storage = multer.diskStorage({
@@ -37,7 +37,7 @@ const upload = multer({
 
 // API Routes
 app.get('/', (req, res) => {
-    res.render("index")
+    res.render("home")
 })
 
 app.get('/download', (req, res, next) => {
@@ -65,11 +65,28 @@ app.post('/upload', function (req, res, next) {
             arr=regex(datas)
 
             mapData=maxCalls(arr)
-            res.render("downloadage",{result:arr, max:mapData[0]});  
+            res.render("displayLog",{result:arr, IPCount:mapData});  
         }
     });
 })
 
+app.post('/filter',function(req,res){
+    
+    var value=req.body.filterData.toUpperCase();
+    if(value=='ALL')
+        res.render("displayLog",{result:arr, IPCount:mapData}); 
+    else{
+        var fData=[];
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].INFO==value)
+                fData.push(arr[i]);
+            
+        
+        }
+        res.render("displayLog",{result:fData, IPCount:mapData} )
+    }   
+    
+})
 
 //running the server.
 app.listen(port, () => {
