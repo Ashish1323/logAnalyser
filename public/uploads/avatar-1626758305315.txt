@@ -1,7 +1,0 @@
-I am a software engineer with interests in Data Analytics, Artificial Intelligence, and Game Development. I recently graduated with a Bachelor's Degree in Computer Science at the University of Illinois at Urbana-Champaign. I have had a few years prior software development experience and have taken courses on Data Structures, Algorithms, Software Engineering, and Artificial Intelligence. I enjoy solving challenging algorithmic problems on websites such as Hackerrank.
-
-I am basically into percipient software development, I am a full stack web developer with exceptional leadership and collaboration skills, I have also worked on mobile application development. I love developing interactive applications that serve a good purpose, Also I enjoy solving challenging algorithmic problems on websites such as Hackerrank, Leetcode.
-
-I am currently a 3rd year Computer Science undergraduate, actively looking for job opportunities/internships that will help me enhance my skill set and give a chance to prove myself. You can have a look at my portfolio in the section below and contact me via mail or phone. 
-
-PS-I'm Looking for the team that allows me to perpetually get outside of my comfort zone. The MERN stack, React- Native are where I've spent the bulk of my time learning. but I'm always excited to learn new technologies!! 
